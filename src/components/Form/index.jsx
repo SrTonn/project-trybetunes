@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Input from '../Input';
 import Loading from '../Loading';
 import { createUser } from '../../services/userAPI';
@@ -54,6 +55,7 @@ export default class Form extends Component {
 
   render() {
     const { inputName, isSaveButtonDisabled, redirect, isLoading } = this.state;
+    const { updateUser } = this.props;
 
     if (isLoading) {
       return (
@@ -80,7 +82,10 @@ export default class Form extends Component {
           type="submit"
           data-testid="login-submit-button"
           disabled={ isSaveButtonDisabled }
-          onClick={ () => this.routeChange(inputName) }
+          onClick={ () => {
+            this.routeChange(inputName);
+            updateUser(inputName);
+          } }
         >
           Entrar
         </button>
@@ -88,3 +93,7 @@ export default class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  updateUser: PropTypes.func.isRequired,
+};

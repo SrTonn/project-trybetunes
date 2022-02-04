@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
-import { getUser } from '../../services/userAPI';
 import Loading from '../Loading';
 import Logo from '../../assets/logo-trybe-tunes.svg';
 import './index.css';
 
 export default class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      userName: '',
-      isLoading: true,
-    };
-  }
-
-  async componentDidMount() {
-    const { name } = await getUser();
-    this.setState(() => ({
-      userName: name,
-      isLoading: false,
-    }));
-  }
-
   render() {
-    const { userName, isLoading } = this.state;
+    const { userName, isLoading } = this.props;
+
     return (
       <header data-testid="header-component">
         <div className="header-container">
@@ -59,3 +44,8 @@ export default class Header extends Component {
 }
 
 // Dica do Leo Vogel utilizar um state nesse componente
+
+Header.propTypes = {
+  userName: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};

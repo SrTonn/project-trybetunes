@@ -1,0 +1,16 @@
+.search-container {
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  position: absolute;
+  top: 45%;
+  width: 100%;
+
+}
+
+.search-icon {
+  height: 17.5px;
+  position: absolute;
+  right: 4px;
+  top: 13px;
+}

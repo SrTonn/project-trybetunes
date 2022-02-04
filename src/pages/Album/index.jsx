@@ -5,8 +5,7 @@ export default class Album extends Component {
   render() {
     return (
       <div data-testid="page-album">
-        {' '}
-        <Header />
+        <Header { ...this.props } />
       </div>
     );
   }

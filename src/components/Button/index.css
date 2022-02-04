@@ -1,0 +1,11 @@
+.search-button {
+  background-color: #003be5;
+  color: white;
+  height : 45px;
+  margin-left: 20px;
+  width: 134px;
+}
+
+.search-button-disabled {
+  background-color: gray;
+}

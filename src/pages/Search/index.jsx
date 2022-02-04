@@ -1,39 +1,49 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Button from '../../components/Button';
 import Header from '../../components/Header';
-import Loading from '../../components/Loading';
+import Input from '../../components/Input';
+import SearchIcon from '../../assets/search-icon.svg';
+import './index.css';
 
 export default class Search extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoading: false,
-    };
-  }
-
-  routeChange = async () => {
-    this.setState(() => ({
-      isLoading: true,
-    }));
-
-    if (result) {
-      this.setState(() => ({
-        isLoading: false,
-      }));
-    }
-  }
-
   render() {
-    const { isLoading } = this.state;
-    if (isLoading) {
-      return (
-        <Loading />
-      );
-    }
-
+    const { isLoading, searchInput, onInputChange } = this.props;
     return (
       <div data-testid="page-search">
-        <Header />
+        <Header { ...this.props } />
+        <main>
+          {!isLoading && (
+            <div className="search-container">
+              <Input
+                name="searchInput"
+                className="search-input"
+                placeHolder="Nome do Artista"
+                dataTestId="search-artist-input"
+                onInputChange={ onInputChange }
+                value={ searchInput }
+              >
+                <img
+                  src={ SearchIcon }
+                  className="search-icon"
+                  alt="search icon"
+                />
+              </Input>
+
+              <Button
+                label="Procurar"
+                { ...this.props }
+              />
+            </div>
+          )}
+        </main>
       </div>
     );
   }
 }
+
+Search.propTypes = {
+  searchInput: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+};

@@ -1,0 +1,12 @@
+.search-input {
+  align-items: center;
+  border-radius: 6px;
+  height: 45px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  width: 34vw;
+}
+
+.input-label {
+  position: relative;
+}

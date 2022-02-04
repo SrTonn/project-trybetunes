@@ -5,7 +5,7 @@ export default class Favorites extends Component {
   render() {
     return (
       <div data-testid="page-favorites">
-        <Header />
+        <Header { ...this.props } />
       </div>);
   }
 }
