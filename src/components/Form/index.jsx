@@ -10,7 +10,7 @@ export default class Form extends Component {
     super();
     this.state = {
       inputName: '',
-      isSaveButtonDisabled: true,
+      isLoginButtonDisabled: true,
       redirect: false,
       isLoading: false,
     };
@@ -49,12 +49,12 @@ export default class Form extends Component {
     const { inputName } = this.state;
     const MIN_CHARACTERES = 3;
     this.setState(() => ({
-      isSaveButtonDisabled: !(inputName.length >= MIN_CHARACTERES && inputName),
+      isLoginButtonDisabled: !(inputName.length >= MIN_CHARACTERES && inputName),
     }));
   }
 
   render() {
-    const { inputName, isSaveButtonDisabled, redirect, isLoading } = this.state;
+    const { inputName, isLoginButtonDisabled, redirect, isLoading } = this.state;
     const { updateUser } = this.props;
 
     if (isLoading) {
@@ -73,7 +73,8 @@ export default class Form extends Component {
       <form>
         <Input
           name="inputName"
-          label="Login:"
+          placeHolder="Nome"
+          className="login-name-input"
           dataTestId="login-name-input"
           onInputChange={ this.onInputChange }
           value={ inputName }
@@ -81,7 +82,8 @@ export default class Form extends Component {
         <button
           type="submit"
           data-testid="login-submit-button"
-          disabled={ isSaveButtonDisabled }
+          className="login-submit-button"
+          disabled={ isLoginButtonDisabled }
           onClick={ () => {
             this.routeChange(inputName);
             updateUser(inputName);
