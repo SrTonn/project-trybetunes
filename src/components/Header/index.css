@@ -1,6 +1,65 @@
-.loading {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translateX(-50%);
+.header-container {
+  align-items: center;
+  background-color: #023031;
+  display: flex;
+  justify-content: space-between;
+
+  /* padding: 10px; */
+}
+
+.header-container > a > img {
+  transform: translateY(-13px);
+}
+
+.header-container div {
+  background-color: white;
+  border-radius: 50px;
+  height: 40px;
+  margin-right: 15px;
+  width: 200px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 4px;
+  transform: translateY(2px);
+  width: 36px;
+}
+
+.header-user-name {
+  display: inline-block;
+  margin-right: 7px;
+  text-align: center;
+  transform: translate(40px, -11px);
+}
+
+a {
+  color: #2fc18c;
+}
+
+.section-links, .section-links a {
+  display: flex;
+  justify-content: space-around;
+}
+
+.section-links {
+  align-items: center;
+  background-color: #f0f2f5;
+  height: 78px;
+}
+
+.section-links a {
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  height: 100%;
+  text-align: center;
+  text-decoration: inherit;
+  width: 33vw;
+}
+
+.active {
+  background-color: #036b52;
+  color: white;
 }
