@@ -47,10 +47,10 @@ export default class Header extends Component {
           ) }
         </div>
         {!isLoading && (
-          <section className="section-links" data-testid="link-to-profile">
-            <NavLink to="/search">Pesquisa</NavLink>
-            <NavLink to="/favorites">Favorita</NavLink>
-            <NavLink to="/profile">Perfil</NavLink>
+          <section className="section-links">
+            <NavLink to="/search" data-testid="link-to-search">Pesquisa</NavLink>
+            <NavLink to="/favorites" data-testid="link-to-favorites">Favorita</NavLink>
+            <NavLink to="/profile" data-testid="link-to-profile">Perfil</NavLink>
           </section>
         )}
       </header>
