@@ -73,7 +73,7 @@ export default class Form extends Component {
           value={ inputName }
         />
         <button
-          type="button"
+          type="submit"
           data-testid="login-submit-button"
           disabled={ isSaveButtonDisabled }
           onClick={ () => this.routeChange(inputName) }

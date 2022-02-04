@@ -5,7 +5,7 @@ export default class Login extends Component {
   render() {
     return (
       <div data-testid="page-login">
-        <Form />
+        <Form { ...this.props } />
       </div>
     );
   }
