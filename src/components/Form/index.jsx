@@ -19,6 +19,10 @@ export default class Form extends Component {
     this.routeChange = this.routeChange.bind(this);
   }
 
+  componentWillUnmount() {
+    this.setState = () => {};
+  }
+
   onInputChange({ target: { type, name, checked, value } }) {
     this.setState(() => ({
       [name]: type === 'checkbox' ? checked : value,
