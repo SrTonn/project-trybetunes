@@ -29,9 +29,7 @@
 
 .header-user-name {
   display: inline-block;
-  margin-right: 7px;
-  text-align: center;
-  transform: translate(40px, -11px);
+  transform: translate(80%, -29%);
 }
 
 a {
