@@ -18,6 +18,7 @@ class App extends React.Component {
     seachQuery: '',
     isSearchButtonDisabled: true,
     albums: [{}],
+    isQueried: false,
     scrollX: 0,
     isMobile: false,
   }
@@ -56,10 +57,13 @@ class App extends React.Component {
       searchInput: '',
       isSearchButtonDisabled: true,
       seachQuery: prev.searchInput,
+      albums: [{}],
     }));
     const albums = await searchAlbumsAPI(value);
-    this.setState(() => ({
-      albums,
+
+    this.setState((prev) => ({
+      albums: albums.length ? albums : prev.albums,
+      isQueried: true,
     }));
   }
 

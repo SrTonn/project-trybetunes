@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import './index.css';
+import styles from './styles.module.css';
 
 export default class Input extends Component {
   render() {
@@ -17,7 +17,7 @@ export default class Input extends Component {
     } = this.props;
     const propsChildren = children.props;
     return (
-      <label htmlFor={ name } className="input-label">
+      <label htmlFor={ name } className={ styles.InputLabel }>
         { label }
         <input
           data-testid={ dataTestId }

@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import SearchIcon from '../../assets/search-icon.svg';
-import './index.css';
+import styles from './styles.module.css';
 
 export default class Search extends Component {
   handleLeftArrow = () => {
@@ -60,6 +60,7 @@ export default class Search extends Component {
       seachQuery,
       onInputChange,
       albums,
+      isQueried,
       scrollX,
     } = this.props;
     const WIDTH_EACH_CARD = 200;
@@ -69,10 +70,10 @@ export default class Search extends Component {
         <Header { ...this.props } />
         <main>
           {!isLoading && (
-            <div className="search-container">
+            <div className={ styles.SearchContainer }>
               <Input
                 name="searchInput"
-                className="search-input"
+                className={ styles.SearchInput }
                 placeHolder="Nome do Artista"
                 dataTestId="search-artist-input"
                 onInputChange={ onInputChange }
@@ -80,7 +81,7 @@ export default class Search extends Component {
               >
                 <img
                   src={ SearchIcon }
-                  className="search-icon"
+                  className={ styles.SearchIcon }
                   alt="search icon"
                 />
               </Input>
@@ -91,27 +92,25 @@ export default class Search extends Component {
               />
             </div>
           )}
-
-          {albums && Object.values(albums[0]).length > 0 && (
-            <h3 className="search-answer-title">
+          {isQueried && albums && Object.values(albums[0]).length > 0 && (
+            <h3 className={ styles.SearchAnswerTitle }>
               Resultado de álbuns de:
               {' '}
               {seachQuery}
             </h3>
           )}
-
-          { albums && (Object.values(albums[0]).length === 0
-            ? <h3 className="search-answer-title">Nenhum álbum foi encontrado</h3>
+          {isQueried && albums && Object.values(albums[0]).length === 0
+            ? <h3 className={ styles.SearchAnswerTitle }>Nenhum álbum foi encontrado</h3>
             : (
               <div
-                className="search-card-container"
+                className={ styles.SearchCardContainer }
                 style={ {
                   marginLeft: scrollX,
                   width: albums.length * WIDTH_EACH_CARD,
                 } }
               >
                 <div
-                  className="AlbumRowLeft"
+                  className={ `${styles.AlbumRowLeft} ${isQueried ? '' : styles.Hide}` }
                   role="button"
                   aria-label="Left arrow"
                   tabIndex={ 0 }
@@ -121,7 +120,7 @@ export default class Search extends Component {
                   <NavigateBeforeSharpIcon style={ { fontSize: 50 } } />
                 </div>
                 <div
-                  className="AlbumRowRight"
+                  className={ `${styles.AlbumRowRight} ${isQueried ? '' : styles.Hide}` }
                   role="button"
                   aria-label="Right arrow"
                   tabIndex={ 0 }
@@ -130,13 +129,13 @@ export default class Search extends Component {
                 >
                   <NavigateNextSharpIcon style={ { fontSize: 50 } } />
                 </div>
-                {albums.map((album) => (
+                {Object.values(albums[0]).length > 0 && albums.map((album) => (
                   <Link
                     key={ album.collectionId }
                     data-testid={ `link-to-album-${album.collectionId}` }
                     to={ `/album/${album.collectionId}` }
                   >
-                    <div className="search-card">
+                    <div className={ styles.SearchCard }>
                       <img
                         src={ album.artworkUrl100.replace('100x100', '200x200') }
                         alt={ album.artistName }
@@ -154,8 +153,7 @@ export default class Search extends Component {
                   </Link>
                 ))}
               </div>
-            )
-          )}
+            )}
         </main>
       </div>
     );
@@ -166,6 +164,7 @@ Search.propTypes = {
   searchInput: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool.isRequired,
+  isQueried: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   seachQuery: PropTypes.string.isRequired,
   scrollX: PropTypes.number.isRequired,

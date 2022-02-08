@@ -1,4 +1,4 @@
-.search-container {
+.SearchContainer {
   display: flex;
   height: 45px;
   justify-content: center;
@@ -7,26 +7,35 @@
   width: 100%;
 }
 
-.search-icon {
+.SearchIcon {
   height: 17.5px;
   position: absolute;
   right: 4px;
   top: 13px;
 }
 
-.search-card-container {
+.SearchCardContainer {
   display: flex;
   padding: 15px;
   padding-left: 30px;
   width: max-content;
 }
 
-.search-answer-title {
+.SearchInput {
+  align-items: center;
+  border-radius: 6px;
+  height: 45px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  width: 34vw;
+}
+
+.SearchAnswerTitle {
   margin-top: 20px;
   text-align: center;
 }
 
-.search-card {
+.SearchCard {
   display: inline-block;
   height: 300px;
   transform: scale(0.9);
@@ -34,22 +43,22 @@
   width: 200px;
 }
 
-.search-card::-webkit-scrollbar {
+.SearchCard::-webkit-scrollbar {
   display: none;
 }
 
-.search-card > img {
+.SearchCard > img {
   border-radius: 6px 6px 0 0;
   cursor: pointer;
   transition: all ease 0.2s;
   width: 100%;
 }
 
-.search-card:hover {
+.SearchCard:hover {
   transform: scale(1);
 }
 
-.search-card p, .search-card h3 {
+.SearchCard p, .SearchCard h3 {
   margin-left: 5px;
 }
 
@@ -76,12 +85,16 @@
   right: 0;
 }
 
-.search-card-container:hover .AlbumRowLeft {
+.SearchCardContainer:hover .AlbumRowLeft {
   opacity: 1;
 }
 
-.search-card-container:hover .AlbumRowRight, .AlbumRowMobile {
+.SearchCardContainer:hover .AlbumRowRight, .AlbumRowMobile {
   opacity: 1;
+}
+
+.Hide {
+  display: none;
 }
 
 /* Reference */
