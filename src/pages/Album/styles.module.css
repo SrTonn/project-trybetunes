@@ -1,0 +1,10 @@
+.Main {
+  align-items: center;
+  display: flex;
+  gap: 90px;
+  justify-content: center;
+}
+
+.Section {
+  width: 300px;
+}

@@ -1,0 +1,13 @@
+.Container {
+  align-items: center;
+  display: flex;
+}
+
+.Span {
+  white-space: nowrap;
+  width: 200px;
+}
+
+.Checkbox {
+  width: 60px;
+}

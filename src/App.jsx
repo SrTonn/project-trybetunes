@@ -82,7 +82,13 @@ class App extends React.Component {
             updateState={ this.updateState }
           />) }
         />
-        <Route path="/album/:id" render={ () => <Album { ...this.state } /> } />
+        <Route
+          path="/album/:id"
+          render={ (props) => (<Album
+            { ...props }
+            { ...this.state }
+          />) }
+        />
         <Route path="/favorites" render={ () => <Favorites { ...this.state } /> } />
         <Route exact path="/profile" render={ () => <Profile { ...this.state } /> } />
         <Route path="/profile/edit" render={ () => <ProfileEdit { ...this.state } /> } />
