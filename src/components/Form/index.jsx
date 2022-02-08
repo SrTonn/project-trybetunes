@@ -24,9 +24,9 @@ export default class Form extends Component {
     this.setState = () => {};
   }
 
-  onInputChange({ target: { type, name, checked, value } }) {
+  onInputChange({ target: { name, value } }) {
     this.setState(() => ({
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: value,
     }), this.checkAllConditions);
   }
 

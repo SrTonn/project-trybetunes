@@ -2,10 +2,9 @@
   display: flex;
   height: 45px;
   justify-content: center;
-  position: absolute;
+  margin-top: 10vh;
   top: 45%;
   width: 100%;
-
 }
 
 .search-icon {
@@ -14,3 +13,78 @@
   right: 4px;
   top: 13px;
 }
+
+.search-card-container {
+  display: flex;
+  padding: 15px;
+  padding-left: 30px;
+  width: max-content;
+}
+
+.search-answer-title {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.search-card {
+  display: inline-block;
+  height: 300px;
+  transform: scale(0.9);
+  transition: all 0.3s;
+  width: 200px;
+}
+
+.search-card::-webkit-scrollbar {
+  display: none;
+}
+
+.search-card > img {
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: all ease 0.2s;
+  width: 100%;
+}
+
+.search-card:hover {
+  transform: scale(1);
+}
+
+.search-card p, .search-card h3 {
+  margin-left: 5px;
+}
+
+.AlbumRowLeft, .AlbumRowRight {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  display: flex;
+  height: 225px;
+  justify-content: center;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  transition: all ease 0.5s;
+  width: 40px;
+  z-index: 99;
+}
+
+.AlbumRowLeft {
+  left: 0;
+}
+
+.AlbumRowRight {
+  right: 0;
+}
+
+.search-card-container:hover .AlbumRowLeft {
+  opacity: 1;
+}
+
+.search-card-container:hover .AlbumRowRight, .AlbumRowMobile {
+  opacity: 1;
+}
+
+/* Reference */
+
+/* https://github.com/SrTonn/
+netflix-clone-nextjs/blob/main/src/components/MovieRow/styles.module.css */
