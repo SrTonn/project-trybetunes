@@ -4,53 +4,26 @@ import Header from '../../components/Header';
 import getMusics from '../../services/musicsAPI';
 import MusicCard from '../../components/MusicCard';
 import styles from './styles.module.css';
-import { addSong } from '../../services/favoriteSongsAPI';
 import Loading from '../../components/Loading';
 
 export default class Album extends Component {
-  state = {
-    albumInfo: '',
-    albumList: [],
-    favoriteList: [],
-    isLoading: false,
-  }
-
   componentDidMount = async () => {
-    const { match } = this.props;
+    const { match, updateState } = this.props;
     const { id } = match.params;
     const albumList = await getMusics(id);
     const albumListCopy = [...albumList];
 
-    this.setState(() => ({
-      albumInfo: albumListCopy.shift(),
-      albumList: albumListCopy,
-    }));
-  }
-
-  onInputChange = async ({ target }) => {
-    const { checked } = target;
-    const { albumList } = this.state;
-    const trackId = Number(target.id);
-    const favorite = albumList.find((music) => music.trackId === trackId);
-
-    this.setState({ isLoading: true }, () => addSong(favorite).then(
-      () => {
-        this.setState((prev) => ({
-          isLoading: false,
-          favoriteList: checked ? [...prev.favoriteList, favorite]
-            : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
-        }));
-      },
-    ));
+    updateState('albumInfo', albumListCopy.shift());
+    updateState('albumList', albumListCopy);
   }
 
   render() {
     const {
       albumInfo: { artistName, collectionName, artworkUrl100 },
       albumList,
-      isLoading,
+      isLoadingAlbum: isLoading,
       favoriteList,
-    } = this.state;
+    } = this.props;
 
     return (
       <div data-testid="page-album">
@@ -58,9 +31,9 @@ export default class Album extends Component {
         { isLoading ? <Loading /> : (
           <main className={ styles.Main }>
             <section className={ styles.Section }>
-              { !artworkUrl100 ? <Loading className={ styles.Loading } /> : (
+              { isLoading ? <Loading className={ styles.Loading } /> : (
                 <img
-                  src={ artworkUrl100.replace('100x100', '290x290') }
+                  src={ artworkUrl100 && artworkUrl100.replace('100x100', '290x290') }
                   alt={ `${collectionName} cover` }
                 />)}
               <h2 data-testid="album-name" className="album-name">
@@ -73,9 +46,8 @@ export default class Album extends Component {
                 <MusicCard
                   key={ obj.trackId }
                   { ...obj }
-                  { ...this.state }
+                  { ...this.props }
                   checked={ favoriteList.some(({ trackId }) => trackId === obj.trackId) }
-                  onInputChange={ this.onInputChange }
                 />
               ))}
             </aside>
@@ -87,6 +59,15 @@ export default class Album extends Component {
 }
 
 Album.propTypes = {
+  isLoadingAlbum: PropTypes.bool.isRequired,
+  albumList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  favoriteList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  updateState: PropTypes.func.isRequired,
+  albumInfo: PropTypes.objectOf(oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.bool,
+  ])).isRequired,
   match: PropTypes.objectOf(oneOfType([
     PropTypes.object,
     PropTypes.string,

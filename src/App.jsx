@@ -9,11 +9,13 @@ import ProfileEdit from './pages/ProfileEdit';
 import Album from './pages/Album';
 import { getUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
+import { addSong } from './services/favoriteSongsAPI';
 
 class App extends React.Component {
   state = {
     userName: '',
     isLoading: true,
+    isLoadingAlbum: false,
     searchInput: '',
     seachQuery: '',
     isSearchButtonDisabled: true,
@@ -21,6 +23,9 @@ class App extends React.Component {
     isQueried: false,
     scrollX: 0,
     isMobile: false,
+    albumInfo: {},
+    albumList: [],
+    favoriteList: [],
   }
 
   async componentDidMount() {
@@ -73,25 +78,49 @@ class App extends React.Component {
     }));
   }
 
+  handleCheckboxClick = async ({ target }) => {
+    const { checked } = target;
+    const { albumList } = this.state;
+    const trackId = Number(target.id);
+    const favorite = albumList.find((music) => music.trackId === trackId);
+
+    this.setState({ isLoadingAlbum: true }, () => addSong(favorite).then(
+      () => {
+        this.setState((prev) => ({
+          isLoadingAlbum: false,
+          favoriteList: checked ? [...prev.favoriteList, favorite]
+            : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
+        }));
+      },
+    ));
+  }
+
   render() {
     return (
       <Switch>
         <Route exact path="/" render={ () => <Login updateUser={ this.updateUser } /> } />
         <Route
           path="/search"
-          render={ () => (<Search
-            { ...this.state }
-            onInputChange={ this.onInputChange }
-            handleClick={ this.handleClick }
-            updateState={ this.updateState }
-          />) }
+          render={ () => (
+            <Search
+              { ...this.state }
+              onInputChange={ this.onInputChange }
+              handleClick={ this.handleClick }
+              updateState={ this.updateState }
+              handleCheckboxClick={ this.handleCheckboxClick }
+            />
+          ) }
         />
         <Route
           path="/album/:id"
-          render={ (props) => (<Album
-            { ...props }
-            { ...this.state }
-          />) }
+          render={ (props) => (
+            <Album
+              { ...props }
+              { ...this.state }
+              updateState={ this.updateState }
+              handleCheckboxClick={ this.handleCheckboxClick }
+            />
+          ) }
         />
         <Route path="/favorites" render={ () => <Favorites { ...this.state } /> } />
         <Route exact path="/profile" render={ () => <Profile { ...this.state } /> } />

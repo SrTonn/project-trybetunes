@@ -7,7 +7,7 @@ export default class MusicCard extends Component {
     const {
       previewUrl,
       trackName,
-      onInputChange,
+      handleCheckboxClick,
       trackId,
       checked,
     } = this.props;
@@ -30,7 +30,7 @@ export default class MusicCard extends Component {
             name="favorite"
             data-testid={ `checkbox-music-${trackId}` }
             type="checkbox"
-            onChange={ onInputChange }
+            onChange={ handleCheckboxClick }
             checked={ checked }
           />
         </label>
@@ -42,7 +42,7 @@ export default class MusicCard extends Component {
 MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackName: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired,
+  handleCheckboxClick: PropTypes.func.isRequired,
   trackId: PropTypes.number.isRequired,
   checked: PropTypes.bool.isRequired,
 };
