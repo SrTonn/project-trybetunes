@@ -7,7 +7,9 @@ export default class Loading extends Component {
     return <div className={ className }><p>Carregando...</p></div>;
   }
 }
-
+Loading.defaultProps = {
+  className: '',
+};
 Loading.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
