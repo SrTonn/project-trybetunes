@@ -137,7 +137,10 @@ export default class Search extends Component {
                     to={ `/album/${album.collectionId}` }
                   >
                     <div className="search-card">
-                      <img src={ album.artworkUrl100 } alt={ album.artistName } />
+                      <img
+                        src={ album.artworkUrl100.replace('100x100', '200x200') }
+                        alt={ album.artistName }
+                      />
                       <div>
                         <h3>
                           { album.collectionName }
