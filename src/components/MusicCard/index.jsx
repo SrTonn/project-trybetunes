@@ -24,8 +24,7 @@ export default class MusicCard extends Component {
           <code>audio</code>
           .
         </audio>
-        <label htmlFor="favorite">
-
+        <label htmlFor="favorite" className={ styles.Label }>
           <input
             id={ trackId }
             name="favorite"

@@ -1,6 +1,17 @@
+:root {
+
+  --color-hr-color: rgba(128, 128, 128, 0.3);
+}
+
 .Container {
   align-items: center;
+  border-bottom: 1px solid var(--color-hr-color);
   display: flex;
+  padding: 15px;
+}
+
+.Container:nth-of-type( 1 ) {
+  border-top: 1px solid var(--color-hr-color);
 }
 
 .Span {
@@ -9,5 +20,10 @@
 }
 
 .Checkbox {
-  width: 60px;
+  margin-right: 50px;
+}
+
+.Label {
+  margin: 0 20px;
+  min-width: 13px;
 }

@@ -58,17 +58,18 @@ export default class Album extends Component {
         { isLoading ? <Loading /> : (
           <main className={ styles.Main }>
             <section className={ styles.Section }>
-              <img
-                src={ artworkUrl100 && artworkUrl100.replace('100x100', '290x290') }
-                alt={ `${collectionName} cover` }
-              />
+              { !artworkUrl100 ? <Loading className={ styles.Loading } /> : (
+                <img
+                  src={ artworkUrl100.replace('100x100', '290x290') }
+                  alt={ `${collectionName} cover` }
+                />)}
               <h2 data-testid="album-name" className="album-name">
                 {collectionName}
               </h2>
               <p data-testid="artist-name" className="artist-name">{artistName}</p>
             </section>
-            <aside>
-              {albumList && albumList.map((obj) => (
+            <aside className={ styles.Aside }>
+              {albumList.map((obj) => (
                 <MusicCard
                   key={ obj.trackId }
                   { ...obj }

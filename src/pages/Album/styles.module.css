@@ -1,10 +1,60 @@
 .Main {
   align-items: center;
   display: flex;
-  gap: 90px;
+  gap: 10vw;
+  height: 80vh;
   justify-content: center;
 }
 
 .Section {
+  margin: 2vw;
+  min-width: 300px;
   width: 300px;
+}
+
+.Aside {
+
+  /* background-color: red; */
+  gap: 40px;
+  margin: 15px;
+  max-height: 450px;
+  min-width: 440px;
+  overflow-y: scroll;
+  padding: 15px;
+}
+
+.Loading {
+  height: 290px;
+  position: relative;
+  text-align: center;
+  width: 290px;
+}
+
+.Loading p {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, 25%);
+}
+
+@media ( max-width : 930px ) {
+
+  .Main {
+    gap: 0;
+  }
+
+  .Aside {
+    padding: 5px;
+  }
+}
+
+@media ( max-width : 790px ) {
+
+  .Main {
+    flex-wrap: wrap;
+  }
+
+  .Aside {
+    padding: 5px;
+  }
 }
