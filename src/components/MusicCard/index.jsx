@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
 import styles from './styles.module.css';
 
 export default class MusicCard extends Component {
   render() {
-    const { previewUrl, trackName } = this.props;
-    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    const {
+      previewUrl,
+      trackName,
+      onInputChange,
+      trackId,
+      checked,
+    } = this.props;
 
     return (
       <div className={ styles.Container }>
@@ -22,12 +24,17 @@ export default class MusicCard extends Component {
           <code>audio</code>
           .
         </audio>
-        <Checkbox
-          { ...label }
-          color="secondary"
-          icon={ <FavoriteBorder /> }
-          checkedIcon={ <Favorite /> }
-        />
+        <label htmlFor="favorite">
+
+          <input
+            id={ trackId }
+            name="favorite"
+            data-testid={ `checkbox-music-${trackId}` }
+            type="checkbox"
+            onChange={ onInputChange }
+            checked={ checked }
+          />
+        </label>
       </div>
     );
   }
@@ -36,4 +43,7 @@ export default class MusicCard extends Component {
 MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackName: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  trackId: PropTypes.number.isRequired,
+  checked: PropTypes.func.isRequired,
 };

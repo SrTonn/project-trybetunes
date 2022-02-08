@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { oneOfType } from 'prop-types';
 import Header from '../../components/Header';
 import getMusics from '../../services/musicsAPI';
 import MusicCard from '../../components/MusicCard';
 import styles from './styles.module.css';
+import { addSong } from '../../services/favoriteSongsAPI';
+import Loading from '../../components/Loading';
 
 export default class Album extends Component {
   state = {
     albumInfo: '',
     albumList: [],
+    favoriteList: [],
+    isLoading: false,
   }
 
   componentDidMount = async () => {
@@ -23,40 +27,68 @@ export default class Album extends Component {
     }));
   }
 
+  onInputChange = async ({ target }) => {
+    const { checked } = target;
+    const { albumList } = this.state;
+    const trackId = Number(target.id);
+    const favorite = albumList.find((music) => music.trackId === trackId);
+
+    this.setState({ isLoading: true });
+
+    await addSong(favorite);
+
+    this.setState((prev) => ({
+      isLoading: false,
+      favoriteList: checked ? [...prev.favoriteList, favorite]
+        : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
+    }));
+  }
+
   render() {
     const {
       albumInfo: { artistName, collectionName, artworkUrl100 },
-      albumList } = this.state;
+      albumList,
+      isLoading,
+      favoriteList,
+    } = this.state;
 
     return (
       <div data-testid="page-album">
         <Header { ...this.props } />
-        <main className={ styles.Main }>
-          <section className={ styles.Section }>
-            <img
-              src={ artworkUrl100 && artworkUrl100.replace('100x100', '290x290') }
-              alt={ `${collectionName} cover` }
-            />
-            <h2 data-testid="album-name" className="album-name">
-              {collectionName}
-            </h2>
-            <p data-testid="artist-name" className="artist-name">{artistName}</p>
-          </section>
-          <aside>
-            {albumList && albumList.map((props) => (
-              <MusicCard
-                key={ props.trackId }
-                { ...props }
+        { isLoading ? <Loading /> : (
+          <main className={ styles.Main }>
+            <section className={ styles.Section }>
+              <img
+                src={ artworkUrl100 && artworkUrl100.replace('100x100', '290x290') }
+                alt={ `${collectionName} cover` }
               />
-            ))}
-          </aside>
-        </main>
+              <h2 data-testid="album-name" className="album-name">
+                {collectionName}
+              </h2>
+              <p data-testid="artist-name" className="artist-name">{artistName}</p>
+            </section>
+            <aside>
+              {albumList && albumList.map((obj) => (
+                <MusicCard
+                  key={ obj.trackId }
+                  { ...obj }
+                  { ...this.state }
+                  checked={ favoriteList.some(({ trackId }) => trackId === obj.trackId) }
+                  onInputChange={ this.onInputChange }
+                />
+              ))}
+            </aside>
+          </main>
+        )}
       </div>
     );
   }
 }
 
 Album.propTypes = {
-  id: PropTypes.string.isRequired,
-  match: PropTypes.shape.isRequired,
+  match: PropTypes.objectOf(oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.bool,
+  ])).isRequired,
 };
