@@ -17,7 +17,7 @@ class App extends React.Component {
     searchInput: '',
     seachQuery: '',
     isSearchButtonDisabled: true,
-    albums: null,
+    albums: [{}],
     scrollX: 0,
     isMobile: false,
   }

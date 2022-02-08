@@ -33,15 +33,15 @@ export default class Album extends Component {
     const trackId = Number(target.id);
     const favorite = albumList.find((music) => music.trackId === trackId);
 
-    this.setState({ isLoading: true });
-
-    await addSong(favorite);
-
-    this.setState((prev) => ({
-      isLoading: false,
-      favoriteList: checked ? [...prev.favoriteList, favorite]
-        : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
-    }));
+    this.setState({ isLoading: true }, () => addSong(favorite).then(
+      () => {
+        this.setState((prev) => ({
+          isLoading: false,
+          favoriteList: checked ? [...prev.favoriteList, favorite]
+            : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
+        }));
+      },
+    ));
   }
 
   render() {

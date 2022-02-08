@@ -60,5 +60,9 @@ Input.propTypes = {
   dataTestId: PropTypes.string.isRequired,
   placeHolder: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.func,
+  ]),
 };

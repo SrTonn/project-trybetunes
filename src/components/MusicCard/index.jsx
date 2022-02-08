@@ -45,5 +45,5 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
   trackId: PropTypes.number.isRequired,
-  checked: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 };

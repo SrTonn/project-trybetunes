@@ -92,7 +92,7 @@ export default class Search extends Component {
             </div>
           )}
 
-          {albums && albums.length > 0 && (
+          {albums && Object.values(albums[0]).length > 0 && (
             <h3 className="search-answer-title">
               Resultado de álbuns de:
               {' '}
@@ -100,7 +100,7 @@ export default class Search extends Component {
             </h3>
           )}
 
-          { albums && (albums.length === 0
+          { albums && (Object.values(albums[0]).length === 0
             ? <h3 className="search-answer-title">Nenhum álbum foi encontrado</h3>
             : (
               <div
@@ -132,7 +132,7 @@ export default class Search extends Component {
                 </div>
                 {albums.map((album) => (
                   <Link
-                    key={ album.id }
+                    key={ album.collectionId }
                     data-testid={ `link-to-album-${album.collectionId}` }
                     to={ `/album/${album.collectionId}` }
                   >
@@ -166,6 +166,6 @@ Search.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   seachQuery: PropTypes.string.isRequired,
   scrollX: PropTypes.number.isRequired,
-  albums: PropTypes.shape.isRequired,
+  albums: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateState: PropTypes.func.isRequired,
 };
