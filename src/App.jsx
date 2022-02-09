@@ -9,7 +9,7 @@ import ProfileEdit from './pages/ProfileEdit';
 import Album from './pages/Album';
 import { getUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
-import { addSong } from './services/favoriteSongsAPI';
+import { addSong, removeSong } from './services/favoriteSongsAPI';
 
 class App extends React.Component {
   state = {
@@ -80,19 +80,23 @@ class App extends React.Component {
 
   handleCheckboxClick = async ({ target }) => {
     const { checked } = target;
+
     const { albumList } = this.state;
     const trackId = Number(target.id);
     const favorite = albumList.find((music) => music.trackId === trackId);
+    this.updateState('isLoadingAlbum', true);
 
-    this.setState({ isLoadingAlbum: true }, () => addSong(favorite).then(
-      () => {
-        this.setState((prev) => ({
-          isLoadingAlbum: false,
-          favoriteList: checked ? [...prev.favoriteList, favorite]
-            : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
-        }));
-      },
-    ));
+    if (checked) {
+      await addSong(favorite);
+    } else {
+      await removeSong(favorite);
+    }
+
+    this.setState((prev) => ({
+      isLoadingAlbum: false,
+      favoriteList: checked ? [...prev.favoriteList, favorite]
+        : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
+    }));
   }
 
   render() {
