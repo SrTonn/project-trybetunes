@@ -3,6 +3,7 @@
   background-color: #023031;
   display: flex;
   justify-content: space-between;
+  padding: 0 2vw;
 }
 
 .HeaderContainer > a > img {
@@ -59,10 +60,10 @@ a {
   height: 100%;
   text-align: center;
   text-decoration: inherit;
-  width: 33vw;
+  width: 33.3vw;
 }
 
-.active {
+.IsActive {
   background-color: #036b52;
   color: white;
 }
