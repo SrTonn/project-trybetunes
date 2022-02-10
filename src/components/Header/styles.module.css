@@ -1,53 +1,58 @@
-.header-container {
+.HeaderContainer {
   align-items: center;
   background-color: #023031;
   display: flex;
   justify-content: space-between;
-
-  /* padding: 10px; */
 }
 
-.header-container > a > img {
+.HeaderContainer > a > img {
   transform: translateY(-13px);
 }
 
-.header-container div {
+.ImgAndUserNameContainer {
+  align-items: center;
   background-color: white;
   border-radius: 50px;
+  display: flex;
   height: 40px;
+  justify-content: center;
   margin-right: 15px;
-  width: 200px;
+  min-width: 130px;
+  overflow: hidden;
+  padding: 2px 0;
+  position: relative;
+  width: fit-content;
 }
 
-.profile-image {
+.ProfileImage {
   border-radius: 50%;
-  display: inline-block;
-  margin-left: 4px;
-  transform: translateY(2px);
+  left: 1px;
+  position: absolute;
   width: 36px;
 }
 
-.header-user-name {
+.HeaderUserName {
   display: inline-block;
-  transform: translate(80%, -29%);
+  padding-left: 4em;
+  transform: translate(-1.1rem, -2px);
 }
 
 a {
   color: #2fc18c;
 }
 
-.section-links, .section-links a {
+.SectionLinks, .SectionLinks a {
   display: flex;
   justify-content: space-around;
 }
 
-.section-links {
+.SectionLinks {
   align-items: center;
   background-color: #f0f2f5;
   height: 78px;
 }
 
-.section-links a {
+.SectionLinks a {
   align-items: center;
   font-size: 20px;
   font-weight: 700;
