@@ -105,8 +105,9 @@ class App extends React.Component {
         <Route exact path="/" render={ () => <Login updateUser={ this.updateUser } /> } />
         <Route
           path="/search"
-          render={ () => (
+          render={ (props) => (
             <Search
+              { ...props }
               { ...this.state }
               onInputChange={ this.onInputChange }
               handleClick={ this.handleClick }
@@ -126,9 +127,28 @@ class App extends React.Component {
             />
           ) }
         />
-        <Route path="/favorites" render={ () => <Favorites { ...this.state } /> } />
-        <Route exact path="/profile" render={ () => <Profile { ...this.state } /> } />
-        <Route path="/profile/edit" render={ () => <ProfileEdit { ...this.state } /> } />
+        <Route
+          path="/favorites"
+          render={ (props) => (<Favorites
+            { ...props }
+            { ...this.state }
+          />) }
+        />
+        <Route
+          exact
+          path="/profile"
+          render={ (props) => (<Profile
+            { ...props }
+            { ...this.state }
+          />) }
+        />
+        <Route
+          path="/profile/edit"
+          render={ (props) => (<ProfileEdit
+            { ...props }
+            { ...this.state }
+          />) }
+        />
         <Route path="*" component={ NotFound } />
       </Switch>
     );
