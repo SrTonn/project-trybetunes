@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import PropTypes, { oneOfType } from 'prop-types';
+import { Link } from 'react-router-dom';
 import Loading from '../Loading';
 import Logo from '../../assets/logo-trybe-tunes.svg';
 import styles from './styles.module.css';
 
 export default class Header extends Component {
   render() {
-    const { userName, isLoading } = this.props;
+    const { userName, isLoading, location: { pathname } } = this.props;
+    const pathSearch = '/search';
+    const pathFavorites = '/favorites';
+    const pathProfile = '/profile';
+    const pathAlbums = '/album';
 
     return (
       <header data-testid="header-component">
@@ -32,11 +36,30 @@ export default class Header extends Component {
           ) }
         </div>
         {!isLoading && (
-          <section className={ styles.SectionLinks }>
-            <NavLink to="/search" data-testid="link-to-search">Pesquisa</NavLink>
-            <NavLink to="/favorites" data-testid="link-to-favorites">Favorita</NavLink>
-            <NavLink to="/profile" data-testid="link-to-profile">Perfil</NavLink>
-          </section>
+          <nav className={ styles.NavLinks }>
+            <Link
+              to="/search"
+              className={ (pathname === pathSearch || pathname.startsWith(pathAlbums))
+                ? styles.IsActive : '' }
+              data-testid="link-to-search"
+            >
+              Pesquisa
+            </Link>
+            <Link
+              to="/favorites"
+              className={ pathname === pathFavorites ? styles.IsActive : '' }
+              data-testid="link-to-favorites"
+            >
+              Favorita
+            </Link>
+            <Link
+              to="/profile"
+              className={ pathname === pathProfile ? styles.IsActive : '' }
+              data-testid="link-to-profile"
+            >
+              Perfil
+            </Link>
+          </nav>
         )}
       </header>
     );
@@ -48,4 +71,9 @@ export default class Header extends Component {
 Header.propTypes = {
   userName: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  location: PropTypes.objectOf(oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.bool,
+  ])).isRequired,
 };
