@@ -42,18 +42,18 @@ a {
   color: #2fc18c;
 }
 
-.SectionLinks, .SectionLinks a {
+.NavLinks, .NavLinks a {
   display: flex;
   justify-content: space-around;
 }
 
-.SectionLinks {
+.NavLinks {
   align-items: center;
   background-color: #f0f2f5;
   height: 78px;
 }
 
-.SectionLinks a {
+.NavLinks a {
   align-items: center;
   font-size: 20px;
   font-weight: 700;
