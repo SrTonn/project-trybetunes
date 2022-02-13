@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../Loading';
 import Logo from '../../assets/logo-trybe-tunes.svg';
 import styles from './styles.module.css';
+import defaultUserImage from '../../assets/defaultUserImage.svg';
 
 export default class Header extends Component {
   render() {
@@ -23,7 +24,7 @@ export default class Header extends Component {
             <div className={ styles.ImgAndUserNameContainer }>
               <img
                 className={ styles.ProfileImage }
-                src={ userInfo.image }
+                src={ isLoading ? defaultUserImage : userInfo.image }
                 alt="user ico"
               />
               <span
