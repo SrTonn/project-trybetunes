@@ -8,8 +8,8 @@
   border-bottom: 1px solid var(--color-hr-color);
   display: flex;
   justify-content: center;
-  padding: 15px;
-  width: 95%;
+  padding: 10px 60px;
+  width: fit-content;
 }
 
 .Container:nth-of-type( 1 ) {
