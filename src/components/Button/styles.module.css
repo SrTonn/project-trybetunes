@@ -1,11 +1,13 @@
-.search-button {
+.SearchButton {
   background-color: #003be5;
+  border-radius: 2px;
   color: white;
+  cursor: pointer;
   height : 45px;
   margin-left: 20px;
   width: 134px;
 }
 
-.search-button-disabled {
-  background-color: gray;
+.SearchButtonDisabled {
+  cursor: not-allowed;
 }
