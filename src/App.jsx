@@ -9,7 +9,7 @@ import ProfileEdit from './pages/ProfileEdit';
 import Album from './pages/Album';
 import { getUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
-import { addSong, removeSong } from './services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from './services/favoriteSongsAPI';
 
 class App extends React.Component {
   state = {
@@ -30,9 +30,11 @@ class App extends React.Component {
 
   async componentDidMount() {
     const { name } = await getUser();
+    const favoriteList = await getFavoriteSongs();
     this.setState(() => ({
       userName: name,
       isLoading: false,
+      favoriteList,
     }));
   }
 

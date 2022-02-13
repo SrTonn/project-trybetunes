@@ -5,7 +5,6 @@ import getMusics from '../../services/musicsAPI';
 import MusicCard from '../../components/MusicCard';
 import styles from './styles.module.css';
 import Loading from '../../components/Loading';
-import { getFavoriteSongs } from '../../services/favoriteSongsAPI';
 
 export default class Album extends Component {
   componentDidMount = async () => {
@@ -16,9 +15,6 @@ export default class Album extends Component {
 
     updateState('albumInfo', albumListCopy.shift());
     updateState('albumList', albumListCopy);
-
-    const favoriteList = await getFavoriteSongs();
-    updateState('favoriteList', favoriteList);
   }
 
   render() {
