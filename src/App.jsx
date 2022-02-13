@@ -32,7 +32,7 @@ class App extends React.Component {
   async componentDidMount() {
     const favoriteList = await getFavoriteSongs();
     const userInfo = await getUser();
-    userInfo.image = `https://github.com/${userInfo.name}.png`;
+    userInfo.image = `https://github.com/${userInfo.name}.png`.replace(/\s/g, '-');
     this.setState(() => ({
       userInfo,
       isLoading: false,
@@ -49,7 +49,7 @@ class App extends React.Component {
   updateUser = async () => {
     this.setState({ isLoadingUser: true });
     const userInfo = await getUser();
-    userInfo.image = `https://github.com/${userInfo.name}.png`;
+    userInfo.image = `https://github.com/${userInfo.name}.png`.replace(/\s/g, '-');
     this.setState(() => ({
       userInfo,
       isLoadingUser: false,

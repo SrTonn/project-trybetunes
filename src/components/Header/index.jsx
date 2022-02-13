@@ -30,7 +30,7 @@ export default class Header extends Component {
                 className={ styles.HeaderUserName }
                 data-testid="header-user-name"
               >
-                {userInfo.name}
+                {isLoading ? <Loading /> : userInfo.name}
               </span>
             </div>
           ) }
