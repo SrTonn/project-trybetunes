@@ -23,6 +23,7 @@ export default class Album extends Component {
       albumList,
       isLoadingAlbum: isLoading,
       favoriteList,
+      handleCheckboxClick,
     } = this.props;
 
     return (
@@ -47,6 +48,7 @@ export default class Album extends Component {
                   key={ obj.trackId }
                   { ...obj }
                   { ...this.props }
+                  onChange={ handleCheckboxClick }
                   checked={ favoriteList.some(({ trackId }) => trackId === obj.trackId) }
                 />
               ))}
@@ -63,6 +65,7 @@ Album.propTypes = {
   albumList: PropTypes.arrayOf(PropTypes.object).isRequired,
   favoriteList: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateState: PropTypes.func.isRequired,
+  handleCheckboxClick: PropTypes.func.isRequired,
   albumInfo: PropTypes.objectOf(oneOfType([
     PropTypes.object,
     PropTypes.string,
