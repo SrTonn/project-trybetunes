@@ -131,10 +131,13 @@ class App extends React.Component {
         />
         <Route
           path="/favorites"
-          render={ (props) => (<Favorites
-            { ...props }
-            { ...this.state }
-          />) }
+          render={ (props) => (
+            <Favorites
+              { ...props }
+              { ...this.state }
+              handleCheckboxClick={ this.handleCheckboxClick }
+            />
+          ) }
         />
         <Route
           exact
