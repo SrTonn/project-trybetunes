@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 export default class Header extends Component {
   render() {
-    const { userName, isLoading, location: { pathname } } = this.props;
+    const { userInfo, isLoading, isLoadingUser, location: { pathname } } = this.props;
     const pathSearch = '/search';
     const pathFavorites = '/favorites';
     const pathProfile = '/profile';
@@ -19,18 +19,18 @@ export default class Header extends Component {
           <Link to="/">
             <img src={ Logo } alt="logo-tipo trybetunes" />
           </Link>
-          {isLoading ? <Loading /> : (
+          {isLoadingUser ? <Loading /> : (
             <div className={ styles.ImgAndUserNameContainer }>
               <img
                 className={ styles.ProfileImage }
-                src={ `https://github.com/${userName}.png` }
+                src={ userInfo.image }
                 alt="user ico"
               />
               <span
                 className={ styles.HeaderUserName }
                 data-testid="header-user-name"
               >
-                {userName}
+                {userInfo.name}
               </span>
             </div>
           ) }
@@ -69,8 +69,13 @@ export default class Header extends Component {
 // Dica do Leo Vogel utilizar um state nesse componente
 
 Header.propTypes = {
-  userName: PropTypes.string.isRequired,
+  userInfo: PropTypes.objectOf(oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.bool,
+  ])).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isLoadingUser: PropTypes.bool.isRequired,
   location: PropTypes.objectOf(oneOfType([
     PropTypes.object,
     PropTypes.string,

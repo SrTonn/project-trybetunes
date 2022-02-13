@@ -13,9 +13,9 @@ import { addSong, getFavoriteSongs, removeSong } from './services/favoriteSongsA
 
 class App extends React.Component {
   state = {
-    userName: '',
     isLoading: true,
     isLoadingAlbum: false,
+    isLoadingUser: false,
     searchInput: '',
     seachQuery: '',
     isSearchButtonDisabled: true,
@@ -26,13 +26,15 @@ class App extends React.Component {
     albumInfo: {},
     albumList: [],
     favoriteList: [],
+    userInfo: {},
   }
 
   async componentDidMount() {
-    const { name } = await getUser();
     const favoriteList = await getFavoriteSongs();
+    const userInfo = await getUser();
+    userInfo.image = `https://github.com/${userInfo.name}.png`;
     this.setState(() => ({
-      userName: name,
+      userInfo,
       isLoading: false,
       favoriteList,
     }));
@@ -44,9 +46,13 @@ class App extends React.Component {
     }), this.checkAllConditions);
   }
 
-  updateUser = (login) => {
+  updateUser = async () => {
+    this.setState({ isLoadingUser: true });
+    const userInfo = await getUser();
+    userInfo.image = `https://github.com/${userInfo.name}.png`;
     this.setState(() => ({
-      userName: login,
+      userInfo,
+      isLoadingUser: false,
     }));
   }
 

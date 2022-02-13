@@ -32,6 +32,8 @@ export default class Form extends Component {
   }
 
   async routeChange(login) {
+    const { updateUser } = this.props;
+
     this.setState(() => ({
       isLoading: true,
     }));
@@ -42,7 +44,7 @@ export default class Form extends Component {
       this.setState(() => ({
         isLoading: false,
         redirect: true,
-      }));
+      }), updateUser);
     }
   }
 
@@ -56,7 +58,6 @@ export default class Form extends Component {
 
   render() {
     const { inputName, isLoginButtonDisabled, redirect, isLoading } = this.state;
-    const { updateUser } = this.props;
 
     if (isLoading) {
       return (
@@ -87,7 +88,6 @@ export default class Form extends Component {
           disabled={ isLoginButtonDisabled }
           onClick={ () => {
             this.routeChange(inputName);
-            updateUser(inputName);
           } }
         >
           Entrar
