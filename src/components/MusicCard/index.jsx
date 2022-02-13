@@ -10,10 +10,18 @@ export default class MusicCard extends Component {
       handleCheckboxClick,
       trackId,
       checked,
+      children,
     } = this.props;
 
     return (
       <div className={ styles.Container }>
+        {children.type === 'img' ? (
+          <img
+            src={ children.props.src }
+            alt={ children.props.alt }
+          />
+        ) : ''}
+
         <span className={ styles.Span }>
           {trackName}
         </span>
@@ -39,10 +47,19 @@ export default class MusicCard extends Component {
   }
 }
 
+MusicCard.defaultProps = {
+  children: {},
+};
+
 MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackName: PropTypes.string.isRequired,
   handleCheckboxClick: PropTypes.func.isRequired,
   trackId: PropTypes.number.isRequired,
   checked: PropTypes.bool.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.func,
+  ]),
 };
