@@ -62,7 +62,7 @@ Input.propTypes = {
   type: PropTypes.string,
   dataTestId: PropTypes.string.isRequired,
   placeHolder: PropTypes.string,
-  onKeyPress: PropTypes.string,
+  onKeyPress: PropTypes.func,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
