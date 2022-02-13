@@ -53,6 +53,13 @@ export default class Search extends Component {
     }
   }
 
+  onKeyPressEnter = (e) => {
+    const { handleClick } = this.props;
+    if (e.code === 'Enter') {
+      handleClick(e);
+    }
+  }
+
   render() {
     const {
       isLoading,
@@ -78,6 +85,7 @@ export default class Search extends Component {
                 dataTestId="search-artist-input"
                 onInputChange={ onInputChange }
                 value={ searchInput }
+                onKeyPress={ this.onKeyPressEnter }
               >
                 <img
                   src={ SearchIcon }
@@ -170,4 +178,5 @@ Search.propTypes = {
   scrollX: PropTypes.number.isRequired,
   albums: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateState: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

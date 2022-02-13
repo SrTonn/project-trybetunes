@@ -14,6 +14,7 @@ export default class Input extends Component {
       placeHolder,
       className,
       children,
+      onKeyPress,
     } = this.props;
     const propsChildren = children.props;
     return (
@@ -28,6 +29,7 @@ export default class Input extends Component {
           onChange={ onInputChange }
           value={ value }
           placeholder={ placeHolder }
+          onKeyPress={ onKeyPress }
         />
         {children && children.type === 'img' && (
           <img
@@ -46,6 +48,7 @@ Input.defaultProps = {
   placeHolder: '',
   label: '',
   className: '',
+  onKeyPress: () => {},
 };
 
 Input.propTypes = {
@@ -59,6 +62,7 @@ Input.propTypes = {
   type: PropTypes.string,
   dataTestId: PropTypes.string.isRequired,
   placeHolder: PropTypes.string,
+  onKeyPress: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
