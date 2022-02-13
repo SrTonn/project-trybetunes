@@ -1,0 +1,15 @@
+.LoginNameInput {
+  height : 45px;
+  padding: 14px;
+  width : 519px;
+}
+
+.LoginSubmitButton {
+  background-color: #003be5;
+  color: white;
+  cursor: pointer;
+  display: block;
+  height : 40px;
+  margin: 0 auto;
+  width : 519px;
+}

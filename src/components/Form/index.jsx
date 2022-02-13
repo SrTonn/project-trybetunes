@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Input from '../Input';
 import Loading from '../Loading';
 import { createUser } from '../../services/userAPI';
+import styles from './style.module.css';
 
 export default class Form extends Component {
   constructor() {
@@ -74,7 +75,7 @@ export default class Form extends Component {
         <Input
           name="inputName"
           placeHolder="Nome"
-          className="login-name-input"
+          className={ styles.LoginNameInput }
           dataTestId="login-name-input"
           onInputChange={ this.onInputChange }
           value={ inputName }
@@ -82,7 +83,7 @@ export default class Form extends Component {
         <button
           type="submit"
           data-testid="login-submit-button"
-          className="login-submit-button"
+          className={ styles.LoginSubmitButton }
           disabled={ isLoginButtonDisabled }
           onClick={ () => {
             this.routeChange(inputName);

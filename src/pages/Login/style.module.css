@@ -10,27 +10,15 @@ fieldset {
   width : 697px;
 }
 
-.logo-trybetunes {
+.LogoTrybetunes {
   height: 158px;
   margin: 0 auto;
   text-align: center;
   width: 208px;
 }
 
-.login-name-input {
-  height : 45px;
-  width : 519px;
-}
 
-.login-container {
+.LoginContainer {
   text-align: center;
 }
 
-.login-submit-button {
-  background-color: #003be5;
-  color: white;
-  display: block;
-  height : 40px;
-  margin: 0 auto;
-  width : 519px;
-}
