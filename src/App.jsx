@@ -82,21 +82,23 @@ class App extends React.Component {
 
   handleCheckboxClick = async ({ target }) => {
     const { checked } = target;
+    const { albumList, favoriteList } = this.state;
 
-    const { albumList } = this.state;
     const trackId = Number(target.id);
-    const favorite = albumList.find((music) => music.trackId === trackId);
+    const favoriteFromAlbumList = albumList.find((music) => music.trackId === trackId);
+    const favoriteFromFavoriteList = favoriteList
+      .find((music) => music.trackId === trackId);
     this.updateState('isLoadingAlbum', true);
 
     if (checked) {
-      await addSong(favorite);
+      await addSong(favoriteFromAlbumList || favoriteFromFavoriteList);
     } else {
-      await removeSong(favorite);
+      await removeSong(favoriteFromAlbumList || favoriteFromFavoriteList);
     }
 
     this.setState((prev) => ({
       isLoadingAlbum: false,
-      favoriteList: checked ? [...prev.favoriteList, favorite]
+      favoriteList: checked ? [...prev.favoriteList, favoriteFromAlbumList]
         : [...prev.favoriteList.filter((music) => music.trackId !== trackId)],
     }));
   }
