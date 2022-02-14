@@ -110,7 +110,16 @@ class App extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={ () => <Login updateUser={ this.updateUser } /> } />
+        <Route
+          exact
+          path="/"
+          render={ () => (
+            <Login
+              { ...this.state }
+              updateUser={ this.updateUser }
+              updateState={ this.updateState }
+            />) }
+        />
         <Route
           path="/search"
           render={ (props) => (
