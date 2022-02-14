@@ -32,34 +32,34 @@ export default class Profile extends Component {
   render() {
     const { userInfo, isLoading } = this.state;
     return (
-      <>
-        <div data-testid="page-profile">
-          <Header { ...this.props } />
-        </div>
+      <div data-testid="page-profile">
+        <Header { ...this.props } />
         { isLoading ? <Loading /> : (
-          <div>
-            <img
-              data-testid="profile-image"
-              src={ userInfo.image }
-              className={ styles.ProfileImage }
-              alt={ userInfo.name }
-            />
-            <button
-              type="button"
-              className={ styles.ProfileEditButton }
-              onClick={ this.handleClick }
-            >
-              Editar perfil
-            </button>
+          <main className={ styles.Main }>
+            <div className={ styles.NameAndImageContainer }>
+              <img
+                data-testid="profile-image"
+                src={ userInfo.image }
+                className={ styles.ProfileImage }
+                alt={ userInfo.name }
+              />
+              <button
+                type="button"
+                className={ styles.ProfileEditButton }
+                onClick={ this.handleClick }
+              >
+                Editar perfil
+              </button>
+            </div>
             <h4>Nome</h4>
             {userInfo.name}
             <h4>E-mail</h4>
             <p>{userInfo.email || '...'}</p>
             <h4>Descrição</h4>
             <p>{userInfo.description || '...'}</p>
-          </div>
+          </main>
         ) }
-      </>
+      </div>
     );
   }
 }
