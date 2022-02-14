@@ -15,7 +15,7 @@ export default class Header extends Component {
     const pathAlbums = '/album';
 
     return (
-      <header data-testid="header-component">
+      <header data-testid="header-component" className={ styles.Header }>
         <div className={ styles.HeaderContainer }>
           <Link to="/">
             <img src={ Logo } alt="logo-tipo trybetunes" />
