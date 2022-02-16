@@ -10,6 +10,7 @@ export default class Loading extends Component {
 Loading.defaultProps = {
   className: '',
 };
+
 Loading.propTypes = {
   className: PropTypes.string,
 };
