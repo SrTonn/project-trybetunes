@@ -168,6 +168,7 @@ class App extends React.Component {
           render={ (props) => (<ProfileEdit
             { ...props }
             { ...this.state }
+            updateState={ this.updateState }
           />) }
         />
         <Route path="*" component={ NotFound } />

@@ -65,9 +65,7 @@ export default class Profile extends Component {
 }
 
 Profile.propTypes = {
-  searchInput: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  isMobile: PropTypes.bool.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

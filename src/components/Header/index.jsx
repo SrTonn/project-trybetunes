@@ -55,7 +55,7 @@ export default class Header extends Component {
             </Link>
             <Link
               to="/profile"
-              className={ pathname === pathProfile ? styles.IsActive : '' }
+              className={ pathname.startsWith(pathProfile) ? styles.IsActive : '' }
               data-testid="link-to-profile"
             >
               Perfil
