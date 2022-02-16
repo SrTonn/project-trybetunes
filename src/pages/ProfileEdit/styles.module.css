@@ -1,0 +1,81 @@
+.ProfileImage {
+  border-radius: 50%;
+  width: 80px;
+}
+
+.Main {
+  margin: 10vh auto 0;
+  width: 288px;
+}
+
+.Main h4 {
+  color: hsl(217, 20%, 30%);
+  margin: 15px 0 5px;
+}
+
+.Main input {
+  height: 37px;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.NameAndImageContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.InputLink::placeholder {
+  color: rgba(218, 218, 218, 1);
+}
+
+.InputLink {
+  border: 1px solid #dadada;
+  border-radius: 2px;
+  outline: none;
+  width: 192px;
+}
+
+p {
+  color: rgba(61, 73, 92, 1);
+  font-family: Verdana , Geneva , Tahoma , sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 18px;
+  width: 288px;
+}
+
+.InputName::placeholder, .InputEmail::placeholder, .Main textarea::placeholder {
+  color: #c5c9ce;
+}
+
+.InputName, .InputEmail, .Main textarea {
+  background-color: #f0f2f585;
+  border: none;
+  border-bottom: 1px solid #3d495c;
+  outline: none;
+  width: 288px;
+}
+
+.Main textarea {
+  padding: 10px;
+}
+
+.ProfileSaveButton {
+  background-color: rgba(0, 59, 229, 1);
+  border: 2px solid hsl(225, 100%, 45%);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  margin: 15px 0 10px 50%;
+  outline: none;
+  padding: 5px 15px;
+  transform: translateX(-50%);
+  width: 115px;
+}
+
+.Disabled {
+  cursor: not-allowed;
+}
