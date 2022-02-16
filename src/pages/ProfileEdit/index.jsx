@@ -58,16 +58,17 @@ export default class ProfileEdit extends Component {
     });
   }
 
-  handleClick = async () => {
+  handleClick = () => {
     const { inputLink, inputName, inputEmail, inputDescription } = this.state;
     const { updateState, history: { push } } = this.props;
 
-    await updateUser({
+    updateUser({
       image: inputLink,
       name: inputName,
       email: inputEmail,
       description: inputDescription,
     });
+
     updateState('userInfo', {
       image: inputLink,
       name: inputName,
