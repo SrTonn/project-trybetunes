@@ -151,7 +151,7 @@ export default class ProfileEdit extends Component {
               onClick={ this.handleClick }
               disabled={ isSaveButtonDisabled }
             >
-              Editar perfil
+              Salvar
             </button>
           </main>
         ) }
